@@ -49,40 +49,40 @@ state = "main"
 
 levels = db.child("Levels").child().get()
 number_of_levels = len(levels.val())
-print("number_of_levels")
-print(number_of_levels)
+#print("number_of_levels")
+#(number_of_levels)
 my_list = []
 for i in range(1, number_of_levels + 1):
     my_list.append(i)
 
 
-print("my_list")
-print(my_list)
+#print("my_list")
+#print(my_list)
 def chanching_levels_names():
-    print("levels")
+    #print("levels")
     i=0
     number_of_levels_two=0
     while i < 15:
         lvlname="level "+str(i)
         data=db.child("Levels").child(lvlname).get().val()
-        print(data)
+        #print(data)
         if data != None:
             number_of_levels_two+=1
             lvlname2 = "level "  + str(number_of_levels_two)
-            print(lvlname2)
-            print(lvlname2)
+            #print(lvlname2)
+            #print(lvlname2)
             db.child("Levels").child(lvlname).remove()
             db.child("Levels").child(lvlname2).set(data)
 
         i = i + 1
-    print(number_of_levels_two)
+    #print(number_of_levels_two)
 chanching_levels_names()
 def transform_to_mass(mas, maxUp):
     qwe = [[0] * maxUp for i in range(len(mas))]
-    print("qwe   " + str(qwe))
-    print("maxUp   " + str(maxUp))
-    print("[0] * maxUp   " + str([0] * maxUp))
-    print("len(mas)   " + str(len(mas)))
+    #print("qwe   " + str(qwe))
+    #print("maxUp   " + str(maxUp))
+    #print("[0] * maxUp   " + str([0] * maxUp))
+    #print("len(mas)   " + str(len(mas)))
     for col in range(len(mas)):
         string = mas[col]
         while 2 * maxUp - 1 != len(string):
@@ -90,12 +90,12 @@ def transform_to_mass(mas, maxUp):
                 string = "0 " + string
         result = string.split(" ")
         qwe[col] = result
-    print("transform_to_mass   "+str(qwe))
+    #print("transform_to_mass   "+str(qwe))
     return qwe
 def transform_str_to_up_left(mas,up,left):
-    print("3333333333333333333")
-    print(len(mas))
-    print(len(mas[0]))
+    #print("3333333333333333333")
+    #print(len(mas))
+    #print(len(mas[0]))
     for row in range(len(mas)):
         s = 0
         string = ''
@@ -123,8 +123,8 @@ def transform_str_to_up_left(mas,up,left):
                     string += str(s)
                 else:
                     string += ' ' + str(s)
-        print("1 string.strip()")
-        print(string.strip())
+        #print("1 string.strip()")
+        #print(string.strip())
         up.append(string.strip())
     # print("up")
     # print(up)
@@ -158,25 +158,25 @@ def transform_str_to_up_left(mas,up,left):
                     string += str(s)
                 else:
                     string += ' ' + str(s)
-        print("2 string.strip()")
-        print(string.strip())
+        #print("2 string.strip()")
+        #print(string.strip())
         left.append(string.strip())
     #     left+=string.strip()+" "
     # print("left")
 
     for col in range(len(left)):
         left[col]=re.sub(r'\s+', ' ', left[col])
-        print(re.sub(r'\s+', ' ', left[col]))
-    print("left1")
-    print(left)
+        #print(re.sub(r'\s+', ' ', left[col]))
+    #print("left1")
+    #print(left)
     for col in range(len(up)):
         re.sub(r'\s+', ' ', up[col])
         up[col]=re.sub(r'\s+', ' ', up[col])
-    print("up1")
-    print(up)
+    #print("up1")
+    #print(up)
 def check(mas, numbers_up, numbers_left):
 
-    print("mas = "+ str(mas))
+    #print("mas = "+ str(mas))
     check1 = True
 
     for row in range(len(mas)):
@@ -206,12 +206,12 @@ def check(mas, numbers_up, numbers_left):
                     string += str(s)
                 else:
                     string += ' ' + str(s)
-        print(string.strip())
-        print(numbers_up[row])
+        #(string.strip())
+        #print(numbers_up[row])
         if string.strip() != numbers_up[row]:
             check1 = False
 
-    print('      1 ' + str(check1))
+    #print('      1 ' + str(check1))
 
     check2 = True
 
@@ -242,15 +242,15 @@ def check(mas, numbers_up, numbers_left):
                     string += str(s)
                 else:
                     string += ' ' + str(s)
-        print(string.strip())
-        print(numbers_up[row])
+        #print(string.strip())
+        #print(numbers_up[row])
         if string.strip() != numbers_left[row]:
             check2 = False
 
-    print('      2 ' + str(check2))
+    #print('      2 ' + str(check2))
 
-    if check1 and check2:
-        print("Е бои!!! Мои поздравения!!!")
+    #if check1 and check2:
+        #print("Е бои!!! Мои поздравения!!!")
 def draw_main():
     width = height = 350
     pygame.display.set_caption("main")
@@ -351,31 +351,31 @@ def draw_levels():
             screen.blit(text1, [text_x, text_y])
             if (X > x) and (X < x + size_block) and (Y > y) and (Y < y + size_block):
                 if (row * 3 + col + 1 <= len(my_list)):
-                    print(len(my_list))
+                    #print(len(my_list))
                     # print(my_list[row * 3 + col])
                     draw_lvl(my_list[row * 3 + col])
                     level = my_list[row * 3 + col]
-                    print("level : " + str(level))
+                    #print("level : " + str(level))
                     state = "level"  # + my_list[row * 3 + col]
-                    print("Состояное Уровень")
+                    #print("Состояное Уровень")
                     screen.fill(black)
 def SaveMas(mas,my_list):
 
     # db.child("Users").child("user 3").set(data)
     # new_lvl = db.child("Levels").child().get()
     name= "level "+str(len(my_list)+1)
-    print("name")
-    print(name)
+    #print("name")
+    #print(name)
 
 
     my_list.append(len(my_list)+1)
     m = len(mas)
     n = len(mas[0])
-    print(str(n)+" "+str(m))
+    #print(str(n)+" "+str(m))
     up=[]
-    print(up)
+    #print(up)
     left=[]
-    print(left)
+    #print(left)
     # 1 2 3 4 ... n/m ->
 
     if n==1:
@@ -430,10 +430,10 @@ def SaveMas(mas,my_list):
     for row in range(n):
         str0=""
         for col in range(m):
-            print(col)
+            #print(col)
             str0+=mas[col][row]
-            print("up[col]")
-            print(str(up[col]))
+            #print("up[col]")
+            #print(str(up[col]))
 
         db.child("Levels").child(name).child("sol").update({row+1:str0})
         # print()
@@ -444,7 +444,7 @@ def SaveMas(mas,my_list):
         db.child("Levels").child(name).child("up").update({row1 + 1: str(up[row1])})
         # print(str(row+1)+" "+str(left[col]))
         # db.child("Levels").child(name).child("up").update({row + 1: up[col]})
-    print("data was seted")
+    #print("data was seted")
 
 
 while True:
@@ -485,7 +485,7 @@ while True:
                     Y < ots_up * 2 + h1 + h1):
                 # print("btn2")
                 state = "change"
-                print("Состояное Изменить")
+                #print("Состояное Изменить")
                 pygame.display.set_caption("main/changing")
 
 
@@ -496,7 +496,7 @@ while True:
                 X=0
                 Y=0
                 state = "creating"
-                print("Состояное Создание нового уровня")
+                #print("Состояное Создание нового уровня")
 
                 pygame.display.set_caption("main/changing/creating")
 
@@ -509,7 +509,7 @@ while True:
                 # print("btn2")
                 draw_levels()
                 state = "deleting"
-                print("Состояное Удаление уровня")
+                #print("Состояное Удаление уровня")
                 pygame.display.set_caption("main/changing/deleting")
 
 
@@ -522,7 +522,7 @@ while True:
                 draw_levels()
                 state = "main"
 
-                print("Состояное вернуться")
+                #print("Состояное вернуться")
                 pygame.display.set_caption("main/changing/deleting")
 
             elif state == "change" and (X > (width - w1) // 2+250) and (X <  (width - w1) // 2+250+ btn_back_w-70) and (
@@ -531,7 +531,7 @@ while True:
                 # print("btn2")
                 draw_main()
                 state = "main"
-                print("Состояное Меню")
+                #print("Состояное Меню")
 
                 pygame.display.set_caption("main")
 
@@ -577,7 +577,7 @@ while True:
 
                             n=row+1
                             m=col+1
-                            print(str(n)+" "+str(m))
+                            #print(str(n)+" "+str(m))
                             for row1 in range(n):
                                 for col1 in range(m):
                                     x = col1 * bloc_size + (col1 + 1) * margin
@@ -589,18 +589,18 @@ while True:
                         Y > hhh/2-(btn_create_h)/2) and (
                         Y < hhh/2+(btn_create_h)/2):
 
-                    print(str(n) + " " + str(m))
-                    print("###############################################")
+                    #(str(n) + " " + str(m))
+                    #print("###############################################")
                     mas = [["0"] * n for i in range(m)]
-                    print("mas")
-                    print(mas)
+                    #print("mas")
+                    #print(mas)
                     state="create_lvl"
 
                 if state=="create_lvl":
 
                     def create_lvl(n, m):
 
-                        print("n*m " + str(n) + "   " + str(m))
+                        #print("n*m " + str(n) + "   " + str(m))
 
                         marginUp = 20
                         marginLeft = 20
@@ -645,14 +645,14 @@ while True:
                 margin = 5
                 bloc_size = 60
 
-                print("mas")
-                print(mas)
+                #print("mas")
+                #print(mas)
                 mar=8
                 ww = 2 * marginUp + m * bloc_size + (m + 1) * margin
                 hh = 2 * marginLeft + n * bloc_size + (n + 1) * margin
                 if (X > ww + mar - margin) and (X < ww + mar - margin + btn_back_w) and (
                         Y > hh / 2 - (btn_back_h) / 2) and (Y < hh / 2 - (btn_back_h) / 2 + btn_back_h):
-                    print("lllllllllllll")
+                    #print("lllllllllllll")
                     SaveMas(mas,my_list)
                     state = "main"
                     # конвертация матрицы в строки ответа
@@ -666,15 +666,15 @@ while True:
                         y = row * bloc_size + (row + 1) * margin + marginLeft
                         if (X > x) and (X < x + bloc_size) and (Y > y) and (Y < y + bloc_size):
 
-                            print(mas)
+                            #print(mas)
                             if mas[col][row]=='0':
                                 pygame.draw.rect(screen, red, (x, y, bloc_size, bloc_size))
                                 mas[col][row] = '1'
                             else:
                                 pygame.draw.rect(screen, black, (x, y, bloc_size, bloc_size))
                                 mas[col][row] = '0'
-                            print("mas")
-                            print(mas)
+                            #print("mas")
+                            #print(mas)
 
 
 
@@ -691,14 +691,14 @@ while True:
                                 level = my_list[row * 3 + col]
                                 name = "level " + str(level)
                                 db.child("Levels").child(name).remove()
-                                print("level was deleted")
+                                #print("level was deleted")
                                 state="main"
                                 chanching_levels_names()
 
                                 levels = db.child("Levels").child().get()
                                 number_of_levels = len(levels.val())
-                                print("number_of_levels")
-                                print(number_of_levels)
+                                #print("number_of_levels")
+                                #print(number_of_levels)
                                 my_list = []
                                 for i in range(1, number_of_levels + 1):
                                     my_list.append(i)
@@ -723,44 +723,44 @@ while True:
                 def draw_lvl(lvl_name):
                     state="level"
                     name = "level " + str(lvl_name)
-                    print("tyt'")
+                    #print("tyt'")
                     n = len(db.child("Levels").child(name).child().child("left").get().val()) - 1
                     m = len(db.child("Levels").child(name).child().child("up").get().val()) - 1
-                    print("n*m "+str(n)+"   "+str(m))
+                    #print("n*m "+str(n)+"   "+str(m))
 
                     up = db.child("Levels").child(name).child().child("left").get().val()
-                    print("up3")
+                    #print("up3")
                     up.pop(0)
-                    print(up)
+                    #print(up)
 
                     left = db.child("Levels").child(name).child().child("up").get().val()
-                    print("left")
+                    #print("left")
                     left.pop(0)
-                    print(left)
+                    #print(left)
 
                     spaces1 = 0
 
                     for row in range(len(up)):
-                        print("str(up[row].count(" "))" + str(up[row].count(" ")))
+                        #print("str(up[row].count(" "))" + str(up[row].count(" ")))
                         if (str(up[row]).count(" ")) > spaces1:
                             spaces1 = up[row].count(" ")
-                            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!up "+str(up[row])+"   "+str(up[row].count(" ")))
+                            #print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!up "+str(up[row])+"   "+str(up[row].count(" ")))
 
-                    print("maxUp")
+                    #print("maxUp")
                     spaces1 += 1
-                    print(spaces1)
+                    #print(spaces1)
                     maxUp = spaces1
 
                     spaces2 = 0
                     for row in range(len(left)):
-                        print("str(up[row].count(" "))" + str(left[row].count(" ")))
+                        #print("str(up[row].count(" "))" + str(left[row].count(" ")))
                         if (str(left[row]).count(" ")) > spaces2:
                             spaces2 = left[row].count(" ")
-                            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!left " + str(left[row]) + "   " + str(left[row].count(" ")))
+                            #print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!left " + str(left[row]) + "   " + str(left[row].count(" ")))
 
-                    print("maxLeft")
+                    #print("maxLeft")
                     spaces2 += 1
-                    print(spaces2)
+                    #print(spaces2)
                     maxLeft = spaces2
 
 
@@ -794,7 +794,7 @@ while True:
                             Y > height - btn_back_h - btn_margin) and (
                             Y < height - btn_margin):
                         state = "main"
-                        print("Состояное Меню")
+                        #print("Состояное Меню")
 
                         size_window = (width, height)
                         screen = pygame.display.set_mode(size_window)
@@ -809,8 +809,8 @@ while True:
                     #print(up)
                     res_level_1_1 = transform_to_mass(up, maxUp)
 
-                    print("res_level_1_1")
-                    print(res_level_1_1)
+                    #print("res_level_1_1")
+                    #print(res_level_1_1)
                     for row in range(maxUp):
                         for col in range(n):
                             x = row * size_num + (row + 1) * margin + marginUp + 5  # + maxUp * size_num
@@ -824,13 +824,13 @@ while True:
                             text_y = (2 * y + bloc_size) / 2 - text_rect.height / 2
                             screen.blit(text1, [text_x, text_y])
                     # level_1_2 = left
-                    print("level_1_2")
+                    #print("level_1_2")
                     #print(level_1_2)
                     res_level_1_2 = transform_to_mass(left, maxLeft)
-                    print("res_level_1_2")
-                    print(res_level_1_2)
+                    #print("res_level_1_2")
+                    #print(res_level_1_2)
                     # print("left")
-                    print("!!!!!!!!!!!!!!!!!!!!!!")
+                    #("!!!!!!!!!!!!!!!!!!!!!!")
 
                     for row in range(maxLeft):
                         for col in range(m):
@@ -862,13 +862,13 @@ while True:
                         y = row * size_block + (row + 1) * margin
                         if (X > x) and (X < x + size_block) and (Y > y) and (Y < y + size_block):
                             if (row * 3 + col + 1 <= len(my_list)):
-                                print(len(my_list))
+                                #print(len(my_list))
                                 # print(my_list[row * 3 + col])
                                 draw_lvl(my_list[row * 3 + col])
                                 level = my_list[row * 3 + col]
-                                print("level : "+str(level))
+                                #print("level : "+str(level))
                                 state = "level"  # + my_list[row * 3 + col]
-                                print("Состояное Уровень")
+                                #print("Состояное Уровень")
 
                                 name = "level " + str(level)
 
@@ -881,7 +881,7 @@ while True:
                                 Y > height - btn_back_h - btn_margin) and (
                                 Y < height - btn_margin):
                     state = "main"
-                    print("Состояное Меню")
+                    #print("Состояное Меню")
 
                     size_window = (width, height)
                     screen = pygame.display.set_mode(size_window)
@@ -892,7 +892,7 @@ while True:
 
 
             elif state == "level":
-                print("click in level)")
+                #print("click in level)")
                 name = "level " + str(level)
 
                 n = len(db.child("Levels").child(name).child().child("left").get().val()) - 1
@@ -904,7 +904,7 @@ while True:
                 # print("!!! "+str(up))
                 spaces1 = 0
                 for row in range(len(up)):
-                    print("string "+str(up[row]))
+                    #print("string "+str(up[row]))
                     if (str(up[row]).count(" ")) > spaces1:
                         spaces1 = up[row].count(" ")
 
@@ -968,14 +968,14 @@ while True:
 
                     mystr = sol[row]
                     result = list(map(int, mystr))
-                    print("resuuuuuuult")
-                    print(str(result))
+                    #print("resuuuuuuult")
+                    #print(str(result))
                     for col in range(m):
                         sol_mas[row][col] = str(result[col])
-                print("sol_mas   " + str(sol_mas))
+                #print("sol_mas   " + str(sol_mas))
                 #check(level_1, up, left)
                 if (level_1==sol_mas):
-                    print("Побеееееедааааааа!!!!!!!")
+                    print("Победа!!!")
                     #раскрасить в зеленый
                     for row in range(n):
                         for col in range(m):
@@ -1021,12 +1021,12 @@ while True:
                         Y > hh + 40 + 5 * (n - 3) - btn_back_h - marginLeft) and (
                         Y < hh + 40 + 5 * (n - 3) - marginLeft):
                     state = "main"
-                    print("Состояное Меню")
+                    #print("Состояное Меню")
                     size_window = (width, height)
                     screen = pygame.display.set_mode(size_window)
             elif state == "edit":
 
-                print("click in edit level)")
+                #print("click in edit level)")
                 name = "level " + str(level)
 
                 n = len(db.child("Levels").child(name).child().child("left").get().val()) - 1
@@ -1084,8 +1084,8 @@ while True:
                 #     print("Побеееееедааааааа!!!!!!!")
 
 
-                print("sol_mas!!!!!!!!!!")
-                print(sol_mas)
+                #print("sol_mas!!!!!!!!!!")
+                #print(sol_mas)
                 for row in range(n):
                     for col in range(m):
                         x = col * bloc_size + (col + 1) * margin + maxUp * size_num + 40 + 5
@@ -1124,7 +1124,7 @@ while True:
                         Y > hh + 40 + 5 * (n - 3) - btn_back_h - marginLeft) and (
                         Y < hh + 40 + 5 * (n - 3) - marginLeft):
                     state = "main"
-                    print("Состояное Меню")
+                    #print("Состояное Меню")
                     size_window = (width, height)
                     screen = pygame.display.set_mode(size_window)
 
