@@ -2,7 +2,7 @@ import time
 import pygame
 import sys
 import pyrebase
-
+import re
 firebaseConfig = {'apiKey': "AIzaSyCHA9Z0syFJpGD-KJev_KwLBbKd6F7orAc",
                   'authDomain': "fir-course-3ef7c.firebaseapp.com",
                   'databaseURL': "https://fir-course-3ef7c-default-rtdb.firebaseio.com/",
@@ -15,8 +15,6 @@ firebaseConfig = {'apiKey': "AIzaSyCHA9Z0syFJpGD-KJev_KwLBbKd6F7orAc",
 firebase = pyrebase.initialize_app(firebaseConfig)
 
 db = firebase.database()
-
-
 
 pygame.init()
 
@@ -165,12 +163,17 @@ def transform_str_to_up_left(mas,up,left):
         left.append(string.strip())
     #     left+=string.strip()+" "
     # print("left")
-    print("left")
+
+    for col in range(len(left)):
+        left[col]=re.sub(r'\s+', ' ', left[col])
+        print(re.sub(r'\s+', ' ', left[col]))
+    print("left1")
     print(left)
-    print("up")
+    for col in range(len(up)):
+        re.sub(r'\s+', ' ', up[col])
+        up[col]=re.sub(r'\s+', ' ', up[col])
+    print("up1")
     print(up)
-
-
 def check(mas, numbers_up, numbers_left):
 
     print("mas = "+ str(mas))
@@ -248,8 +251,6 @@ def check(mas, numbers_up, numbers_left):
 
     if check1 and check2:
         print("Е бои!!! Мои поздравения!!!")
-
-
 def draw_main():
     width = height = 350
     pygame.display.set_caption("main")
@@ -309,9 +310,6 @@ def draw_changing():
     text_x = width / 2 - text_rect.width / 2
     text_y = ots_up + h1 / 2 + h1 + ots_up - text_rect.height / 2 + h1 + ots_up
     screen.blit(text2, [text_x, text_y])
-
-
-
 def draw_levels():
     marginUp = 30
     marginLeft = 30
@@ -361,7 +359,6 @@ def draw_levels():
                     state = "level"  # + my_list[row * 3 + col]
                     print("Состояное Уровень")
                     screen.fill(black)
-
 def SaveMas(mas,my_list):
 
     # db.child("Users").child("user 3").set(data)
@@ -575,7 +572,7 @@ while True:
                     for col in range(8):  # не трогай тройку!!!!!!!!! Это меню с уровнями
                         x = col * bloc_size + (col + 1) * margin
                         y = row * bloc_size + (row + 1) * margin
-                        if (X > x) and (X < x + bloc_size) and (Y > y) and (Y < y + bloc_size) and row==col:
+                        if (X > x) and (X < x + bloc_size) and (Y > y) and (Y < y + bloc_size):
 
                             n=row+1
                             m=col+1
@@ -646,6 +643,7 @@ while True:
                 marginLeft = 20
                 margin = 5
                 bloc_size = 60
+
                 print("mas")
                 print(mas)
                 mar=8
@@ -690,7 +688,7 @@ while True:
                     print("n*m " + str(n) + "   " + str(m))
 
                     up = db.child("Levels").child(name).child().child("left").get().val()
-                    print("up")
+                    print("up2")
                     up.pop(0)
                     print(up)
 
@@ -937,7 +935,7 @@ while True:
                     print("n*m "+str(n)+"   "+str(m))
 
                     up = db.child("Levels").child(name).child().child("left").get().val()
-                    print("up")
+                    print("up3")
                     up.pop(0)
                     print(up)
 
@@ -978,7 +976,9 @@ while True:
                     margin = 5
 
                     size_num = 60
-                    bloc_size = 100
+                    bloc_size = 60
+                    if n > 4:
+                        bloc_size = 30
                     ww = 2 * marginUp + maxUp * size_num + m * bloc_size
                     hh = 2 * marginLeft + maxLeft * size_num + n * bloc_size
 
@@ -1145,7 +1145,9 @@ while True:
                 size_num = 60
                 #n = 3  ###########################################################################################
                 #m = 3  ###########################################################################################
-                bloc_size = 100
+                bloc_size = 60
+                if n > 4:
+                    bloc_size = 30
                 #
 
                 for row in range(n):
@@ -1210,7 +1212,9 @@ while True:
                 margin = 5
 
                 size_num = 60
-                bloc_size = 100
+                bloc_size = 60
+                if n > 4:
+                    bloc_size = 30
                 ww = 2 * marginUp + maxUp * size_num + m * bloc_size
                 hh = 2 * marginLeft + maxLeft * size_num + n * bloc_size
 
@@ -1275,7 +1279,9 @@ while True:
                 size_num = 60
                 #n = 3  ###########################################################################################
                 #m = 3  ###########################################################################################
-                bloc_size = 100
+                bloc_size = 60
+                if n > 4:
+                    bloc_size = 30
                 #
 
 
@@ -1309,7 +1315,9 @@ while True:
                 margin = 5
 
                 size_num = 60
-                bloc_size = 100
+                bloc_size = 60
+                if n > 4:
+                    bloc_size = 30
                 ww = 2 * marginUp + maxUp * size_num + m * bloc_size
                 hh = 2 * marginLeft + maxLeft * size_num + n * bloc_size
 
